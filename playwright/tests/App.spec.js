@@ -2,11 +2,12 @@ const { test, expect } = require("@playwright/test");
 const { chromium } = require("playwright");
 const { user, password } = require("../user.js");
 
-test('SuccessfulAuthorization', async ({ page }) => {
+test('SuccessfulAuthorization', async () => {
   const browser = await chromium.launch({
     headless: false,
     slowMo: 5000,
   });
+  const page = await browser.newPage();
   await page.goto('https://netology.ru/');
   await page.getByRole('link', { name: 'Войти' }).click();
   await page.getByPlaceholder('Email').click();
@@ -19,11 +20,12 @@ test('SuccessfulAuthorization', async ({ page }) => {
   await browser.close;
 });
 
-test('UnsuccessfulAuthorization', async ({ page }) => {
+test('UnsuccessfulAuthorization', async () => {
   const browser = await chromium.launch({
     headless: false,
     slowMo: 5000,
   });
+  const page = await browser.newPage();
   await page.goto('https://netology.ru/');
   await page.getByRole('link', { name: 'Войти' }).click();
   await page.getByPlaceholder('Email').click();

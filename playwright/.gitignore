@@ -1,5 +1,6 @@
 /node_modules/
 /user.js
+/test-results
 
 .vscode/*
 !.vscode/settings.json
