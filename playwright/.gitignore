@@ -1,6 +1,8 @@
 /node_modules/
 /user.js
 /test-results
+/tests-examples
+/e2e
 
 .vscode/*
 !.vscode/settings.json
@@ -11,3 +13,6 @@
 
 # Local History for Visual Studio Code
 .history/
+/test-results/
+/playwright-report/
+/playwright/.cache/

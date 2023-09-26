@@ -1,13 +1,7 @@
 const { test, expect } = require("@playwright/test");
-const { chromium } = require("playwright");
 const { user, password } = require("../user.js");
 
-test('SuccessfulAuthorization', async () => {
-  const browser = await chromium.launch({
-    headless: false,
-    slowMo: 5000,
-  });
-  const page = await browser.newPage();
+test('SuccessfulAuthorization', async ({page}) => {
   await page.goto('https://netology.ru/');
   await page.getByRole('link', { name: 'Войти' }).click();
   await page.getByPlaceholder('Email').click();
@@ -17,15 +11,9 @@ test('SuccessfulAuthorization', async () => {
   await page.getByTestId('login-submit-btn').click();
   await expect(page).toHaveTitle("Моё обучение");
   await page.close;
-  await browser.close;
 });
 
-test('UnsuccessfulAuthorization', async () => {
-  const browser = await chromium.launch({
-    headless: false,
-    slowMo: 5000,
-  });
-  const page = await browser.newPage();
+test('UnsuccessfulAuthorization', async ({page}) => {
   await page.goto('https://netology.ru/');
   await page.getByRole('link', { name: 'Войти' }).click();
   await page.getByPlaceholder('Email').click();
@@ -37,5 +25,4 @@ test('UnsuccessfulAuthorization', async () => {
     "Вы ввели неправильно логин или пароль"
   );
   await page.close;
-  await browser.close;
 });
